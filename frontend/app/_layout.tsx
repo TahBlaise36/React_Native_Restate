@@ -2,6 +2,8 @@ import { SplashScreen, Stack } from "expo-router";
 import "./global.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AuthProvider } from "@/context/AuthContext";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -22,14 +24,21 @@ export default function RootLayout() {
   if (!fontsLoaded) {
     return null;
   }
+
+  const queryClient = new QueryClient();
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(root)/(tabs)" />
-      <Stack.Screen name="sign-in" options={{ title: "Sign In" }} />
-      <Stack.Screen
-        name="(root)/properties/[id]"
-        options={{ title: "Property Details" }}
-      />
-    </Stack>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(root)/(tabs)" />
+          <Stack.Screen name="sign-in" options={{ title: "Sign In" }} />
+          <Stack.Screen name="sign-up" options={{ title: "Sign Up" }} />
+          <Stack.Screen
+            name="(root)/properties/[id]"
+            options={{ title: "Property Details" }}
+          />
+        </Stack>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }

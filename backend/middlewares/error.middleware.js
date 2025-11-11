@@ -1,5 +1,6 @@
-const errorMiddleware = (err, req, res, next) => {
+const errorMiddleware = async (err, req, res, next) => {
   try {
+    console.error("🔥 Error middleware:", err);
     // Handle different error types
     let error = { ...err };
     error.message = err.message;
@@ -28,9 +29,10 @@ const errorMiddleware = (err, req, res, next) => {
     }
 
     // Default to 500 for all other errors
-    res
-      .status(error.statusCode || 500)
-      .json({ message: error.message || "Internal Server Error" });
+    res.status(error.statusCode || 500).json({
+      success: false,
+      message: error.message || "Internal Server Error",
+    });
   } catch (error) {
     next(error);
   }

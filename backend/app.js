@@ -6,13 +6,21 @@ import connectToDatabase from "./database/mongodb.js";
 import bookingRouter from "./routes/booking.routes.js";
 import favouriteRouter from "./routes/favourite.routes.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
+import cors from "cors";
 
 const app = express();
 
 // Middlewares
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
 
 // Connect to MongoDB using Mongoose
 connectToDatabase();

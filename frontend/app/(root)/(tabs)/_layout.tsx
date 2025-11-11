@@ -12,7 +12,7 @@ const RootLayout = () => {
       />
       <Tabs.Screen
         name="profile"
-        options={{ title: "Sign In", headerShown: false }}
+        options={{ title: "Profile", headerShown: false }}
       />
     </Tabs>
   );
