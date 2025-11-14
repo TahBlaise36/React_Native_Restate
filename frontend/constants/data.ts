@@ -1,7 +1,7 @@
 import icons from "./icons";
 import images from "./images";
 
-export const cards = [
+export const cards: EstateCard[] = [
   {
     title: "Card 1",
     location: "Location 1",
@@ -36,26 +36,26 @@ export const cards = [
   },
 ];
 
-export const featuredCards = [
+export const featuredCards: EstateCard[] = [
   {
     title: "Featured 1",
     location: "Location 1",
     price: "$100",
     rating: 4.8,
-    image: images.newYork,
     category: "house",
+    image: images.newYork,
   },
   {
     title: "Featured 2",
     location: "Location 2",
     price: "$200",
     rating: 3,
-    image: images.japan,
     category: "flat",
+    image: images.japan,
   },
 ];
 
-export const categories = [
+export const categories: EstateCategory[] = [
   { title: "All", category: "All" },
   { title: "Houses", category: "House" },
   { title: "Condos", category: "Condos" },

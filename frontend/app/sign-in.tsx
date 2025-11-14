@@ -127,6 +127,7 @@ const SignIn = () => {
         className="flex-1"
       >
         <HScrollView
+          requiresSafeArea={false}
           contentContainerStyle={{ flexGrow: 1, paddingBottom: 50 }}
           keyboardShouldPersistTaps="handled"
         >

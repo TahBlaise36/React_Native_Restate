@@ -1,11 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
+import HScrollView from "@/components/ui/scroll-view";
 
 const Explore = () => {
   return (
-    <View>
+    <HScrollView>
       <Text>Explore</Text>
-    </View>
+    </HScrollView>
   );
 };
 

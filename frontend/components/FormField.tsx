@@ -52,7 +52,7 @@ const FormField = ({
         {title}
       </Text>
       <View
-        className={`border border-gray-300 ${isFocused ? "border-blue-500" : ""} ${error ? "border-red-400" : ""} rounded-lg px-4 flex-row items-center gap-2`}
+        className={`border border-gray-300 ${isFocused ? "border-primary-300" : ""} ${error ? "border-red-400" : ""} rounded-lg px-4 flex-row items-center gap-2`}
       >
         {renderLeftIcon && (
           <MaterialCommunityIcons name={iconName} size={20} color="#8C8E98" />

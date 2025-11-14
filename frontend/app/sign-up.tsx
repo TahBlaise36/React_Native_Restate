@@ -107,6 +107,7 @@ const SignUp = () => {
         className="flex-1"
       >
         <HScrollView
+          requiresSafeArea={false}
           contentContainerStyle={{
             flexGrow: 1,
             justifyContent: "center",
