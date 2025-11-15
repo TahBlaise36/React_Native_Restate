@@ -15,13 +15,15 @@ const HeaderSecondary = ({
   return (
     <View className="mb-3">
       <View className="flex-row justify-between ">
-        <Text className="text-xl font-rubik-medium">{title}</Text>
+        <Text className="text-black-300 text-xl font-rubik-bold">{title}</Text>
 
-        <Pressable onPress={onNavigate}>
-          <Text className="text-base font-rubik text-primary-300">
-            {navTitle}
-          </Text>
-        </Pressable>
+        {navTitle && (
+          <Pressable onPress={onNavigate}>
+            <Text className="text-base font-rubik-medium text-primary-300">
+              {navTitle}
+            </Text>
+          </Pressable>
+        )}
       </View>
     </View>
   );

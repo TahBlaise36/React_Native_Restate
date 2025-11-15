@@ -3,42 +3,47 @@ import images from "./images";
 
 export const cards: EstateCard[] = [
   {
-    title: "Card 1",
-    location: "Location 1",
+    id: "01",
+    title: "Lucky Lake Apartments",
+    location: "Beijing, China",
     price: "$100",
     rating: 4.8,
     category: "house",
     image: images.newYork,
   },
   {
-    title: "Card 2",
-    location: "Location 2",
+    id: "02",
+    title: "Home Away From Home",
+    location: "Tokyo, Japan",
     price: "$200",
     rating: 3,
     category: "house",
     image: images.japan,
   },
   {
-    title: "Card 3",
+    id: "03",
+    title: "Tranquil Tavern Apartments",
     location: "Location 3",
     price: "$300",
     rating: 2,
     category: "flat",
-    image: images.newYork,
+    image: images.Beijing,
   },
   {
-    title: "Card 4",
+    id: "04",
+    title: "Tropicana Del Norte De Forte",
     location: "Location 4",
     price: "$400",
     rating: 5,
     category: "villa",
-    image: images.japan,
+    image: images.china,
   },
 ];
 
 export const featuredCards: EstateCard[] = [
   {
-    title: "Featured 1",
+    id: "01",
+    title: "Lucky Lake Apartments",
     location: "Location 1",
     price: "$100",
     rating: 4.8,
@@ -46,8 +51,9 @@ export const featuredCards: EstateCard[] = [
     image: images.newYork,
   },
   {
-    title: "Featured 2",
-    location: "Location 2",
+    id: "02",
+    title: "Home Away From Home",
+    location: "Tokyo, Japan",
     price: "$200",
     rating: 3,
     category: "flat",
@@ -140,26 +146,26 @@ export const facilities = [
 export const gallery = [
   {
     id: 1,
-    image: images.newYork,
+    image: images.japan,
   },
   {
     id: 2,
-    image: images.japan,
+    image: images.newYork,
   },
   {
     id: 3,
-    image: images.newYork,
+    image: images.Beijing,
   },
   {
     id: 4,
-    image: images.japan,
+    image: images.china,
   },
-  {
-    id: 5,
-    image: images.newYork,
-  },
-  {
-    id: 6,
-    image: images.japan,
-  },
+  // {
+  //   id: 5,
+  //   image: images.newYork,
+  // },
+  // {
+  //   id: 6,
+  //   image: images.japan,
+  // },
 ];

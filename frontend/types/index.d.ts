@@ -1,4 +1,5 @@
 interface EstateCard {
+  id: string;
   title: string;
   location: string;
   price: string;

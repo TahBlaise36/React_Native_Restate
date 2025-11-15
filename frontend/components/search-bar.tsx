@@ -11,11 +11,12 @@ import icons from "@/constants/icons";
 import { COLORS } from "@/constants/theme";
 
 interface SearchBarProps {
-  onChangeText?: () => void;
+  onChangeText?: (text: string) => void;
   onPress?: () => void;
+  value?: string;
 }
 
-const SearchBar = ({ onChangeText, onPress }: SearchBarProps) => {
+const SearchBar = ({ onChangeText, onPress, value }: SearchBarProps) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   return (
     <Pressable
@@ -34,9 +35,9 @@ const SearchBar = ({ onChangeText, onPress }: SearchBarProps) => {
         className="flex-1 py-5"
         placeholder="Search something"
         placeholderTextColor={COLORS.black[100]}
+        value={value}
         onChangeText={onChangeText}
-        // focusable={isFocused}
-
+        onPress={onPress}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />

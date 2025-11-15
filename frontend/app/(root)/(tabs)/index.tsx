@@ -19,6 +19,17 @@ import { useState } from "react";
 import HeaderSecondary from "@/components/header-secondary";
 import { cards, categories, featuredCards } from "@/constants/data";
 import { router } from "expo-router";
+import EmptyState from "@/components/empty-state";
+import NotificationBell from "@/components/notification-bell";
+import EstateCard from "@/components/estate-card";
+import Animated, {
+  FadeIn,
+  FadeInLeft,
+  FadeInUp,
+  FadeOut,
+  FadeOutLeft,
+  FadeOutUp,
+} from "react-native-reanimated";
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -53,83 +64,42 @@ export default function Index() {
             </View>
           </View>
         }
-        headerRight={
-          <View className="relative">
-            <Image
-              source={icons.bell}
-              resizeMode="contain"
-              tintColor={COLORS.black[300]}
-              className="size-7"
-            />
-            <View className="absolute size-2 bg-primary-300 rounded-full -right-0 -top-0">
-              <Text className="text-white text-sm">3</Text>
-            </View>
-          </View>
-        }
+        headerRight={<NotificationBell />}
         headerBottom={
           <SearchBar onPress={() => router.push("/(root)/(tabs)/explore")} />
         }
       />
       <HScrollView requiresSafeArea={false}>
-        <HeaderSecondary title="Featured" navTitle="See All" />
+        <HeaderSecondary
+          title="Featured"
+          navTitle="See All"
+          onNavigate={() => router.push("/(root)/(tabs)/explore")}
+        />
         <FlatList
           data={featuredCards}
-          keyExtractor={(item) => item.title}
-          renderItem={({ item }) => (
-            <Pressable className="w-56 rounded-2xl overflow-hidden">
-              <ImageBackground
-                source={item.image}
-                resizeMode="cover"
-                className="w-full h-72 p-4 hover:scale-105"
-              >
-                <View className="flex-1 flex-col justify-between">
-                  <View className="bg-white flex-row py-1 px-2 gap-1 items-center rounded-full ml-auto">
-                    <Image
-                      source={icons.star}
-                      resizeMode="contain"
-                      className="size-4"
-                    />
-                    <Text className="text-sm font-rubik text-primary-300">
-                      {item.rating}
-                    </Text>
-                  </View>
-                  <View className="flex-row justify-between items-end">
-                    <View className="flex-col gap-1">
-                      <Text
-                        className="text-xl font-rubik-medium text-white"
-                        numberOfLines={1}
-                      >
-                        {item.title}
-                      </Text>
-                      <Text className="text-sm font-rubik text-gray-100">
-                        {item.location}
-                      </Text>
-                      <Text className="text-xl font-rubik-medium text-white">
-                        {item.price}
-                      </Text>
-                    </View>
-                    <TouchableOpacity>
-                      <Image
-                        source={icons.heart}
-                        resizeMode="contain"
-                        className="size-6 "
-                      />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </ImageBackground>
-            </Pressable>
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
+            <Animated.View
+              entering={FadeInLeft.delay(index * 100).springify()}
+              exiting={FadeOutLeft.delay(500)}
+              className=""
+            >
+              <EstateCard item={item} variant="lg" />
+            </Animated.View>
           )}
           contentContainerStyle={{
             gap: 16,
-            marginBottom: 16,
+            marginBottom: 24,
           }}
-          // ItemSeparatorComponent={}
           showsHorizontalScrollIndicator={false}
           horizontal
         />
 
-        <HeaderSecondary title="Our Recommendation" navTitle="See All" />
+        <HeaderSecondary
+          title="Our Recommendation"
+          navTitle="See All"
+          onNavigate={() => router.push("/(root)/(tabs)/explore")}
+        />
         <FlatList
           data={categories}
           keyExtractor={(item) => item.title}
@@ -141,65 +111,43 @@ export default function Index() {
             />
           )}
           contentContainerStyle={{ gap: 12, marginBottom: 16 }}
-          showsVerticalScrollIndicator={false}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
         <FlatList
           data={filteredCards()}
           numColumns={2}
           scrollEnabled={false}
-          keyExtractor={(item) => item.title}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
           columnWrapperStyle={{
             justifyContent: "space-between",
             marginBottom: 16,
           }}
-          contentContainerStyle={{}}
-          renderItem={({ item }) => (
-            <View className="bg-white p-4 rounded-2xl shadow-md w-[48%]">
-              <Pressable className="rounded-2xl overflow-hidden">
-                <ImageBackground
-                  source={item.image}
-                  resizeMode="cover"
-                  className="w-full h-40 p-3"
-                >
-                  <View className="bg-white flex-row py-1 px-2 gap-1 items-center rounded-full ml-auto">
-                    <Image
-                      source={icons.star}
-                      resizeMode="contain"
-                      className="size-4"
-                    />
-                    <Text className="text-sm font-rubik text-primary-300">
-                      {item.rating}
-                    </Text>
-                  </View>
-                </ImageBackground>
-              </Pressable>
-              <View className="flex-row justify-between items-end mt-2">
-                <View className="flex-col">
-                  <Text
-                    className="text-lg font-rubik-medium text-black-300"
-                    numberOfLines={1}
-                  >
-                    {item.title}
-                  </Text>
-                  <Text className="text-sm font-rubik text-black-100">
-                    {item.location}
-                  </Text>
-                  <Text className="text-lg font-rubik-medium text-black-300">
-                    {item.price}
-                  </Text>
-                </View>
-                <TouchableOpacity>
-                  <Image
-                    source={icons.heart}
-                    resizeMode="contain"
-                    className="size-6 "
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
+          renderItem={({ item, index }) => (
+            <Animated.View
+              entering={FadeInUp.delay(index * 60).springify()}
+              exiting={FadeOutUp.delay(200)}
+              className="w-[48%]"
+            >
+              <EstateCard item={item} variant="md" />
+            </Animated.View>
           )}
-          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={
+            <Animated.View
+              key={selectedCategory}
+              entering={FadeIn.delay(500)}
+              exiting={FadeOut.delay(500)}
+              className=""
+            >
+              <EmptyState
+                variant="sm"
+                title="No Estates Found!"
+                message={`There are no ${selectedCategory.toLocaleLowerCase()} at the moment.`}
+                className="mt-4"
+              />
+            </Animated.View>
+          }
         />
       </HScrollView>
     </SafeAreaView>
