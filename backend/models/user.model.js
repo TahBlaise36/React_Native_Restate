@@ -22,6 +22,21 @@ const userSchema = new mongoose.Schema(
       required: [true, "User password is required"],
       minlength: 6,
     },
+
+    phone: { type: String },
+
+    role: {
+      type: String,
+      enum: ["user", "agent", "owner", "admin"],
+      default: "user",
+    },
+
+    avatarUrl: String,
+
+    savedProperties: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Property" },
+    ],
+
     provider: {
       type: String,
       enum: ["local", "google"],
